@@ -1,0 +1,16 @@
+CREATE DATABASE CSE_3A_261;
+
+USE CSE_3A_261;
+
+CREATE TABLE DEPOSITE(
+	Column_name Varchar(20),
+	Data_type Varchar(20)
+);
+
+INSERT INTO DEPOSITE (Column_name , Data_type) VALUES ('ACTNO', 'INT');
+INSERT INTO DEPOSITE (Column_name , Data_type) VALUES ('CNAME', 'VARCHAR(20)');
+INSERT INTO DEPOSITE (Column_name , Data_type) VALUES ('BNAME', 'VARCHAR(20)');
+INSERT INTO DEPOSITE (Column_name , Data_type) VALUES ('AMOUNT', 'DECIMAL');
+INSERT INTO DEPOSITE (Column_name , Data_type) VALUES ('DATE', 'DATETIME');
+
+SELECT * FROM DEPOSITE;
