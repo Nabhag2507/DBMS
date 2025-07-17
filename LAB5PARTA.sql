@@ -1,16 +1,16 @@
 USE CSE_3A_261;
 
---Part – A: 
+--Part ï¿½ A: 
 --1. Add two more columns City VARCHAR (20) and Pincode INT. 
 ALTER TABLE DEPOSITE 
 ADD CITY VARCHAR(20) , PINCODE INT;
 
 --2. Add column state VARCHAR(20). 
 ALTER TABLE DEPOSITE 
-ADD STATE VARCHAT(20);
+ADD STATE VARCHAR(20);
 
 --3. Change the size of CNAME column from VARCHAR (50) to VARCHAR (35). 
-ALTER TABLE DEPOSOTE
+ALTER TABLE  DEPOSITE
 ALTER COLUMN CNAME VARCHAR(20);
 
 --4. Change the data type DECIMAL to INT in amount Column. 
@@ -27,7 +27,7 @@ EXEC SP_RENAME 'DEPOSITE.ACTNO' , 'ANO';
 --7. Change name of table DEPOSIT to DEPOSIT_DETAIL.
 EXEC SP_RENAME 'DEPOSITE' , 'DEPOSITE_DETAIL';
 
---Part – B: 
+--Part ï¿½ B: 
 --1. Rename Column ADATE to AOPENDATE OF DEPOSIT_DETAIL table. 
 EXEC SP_RENAME 'DEPOSITE_DETAIL.ADATE' , 'AOPENDATE'
 
@@ -42,7 +42,7 @@ EXEC SP_RENAME 'CNAME' , 'CustomerName';
 ALTER TABLE DEPOSITE
 ADD COUNTRY VARCHAR(20);
 
---Part – C: 
+--Part ï¿½ C: 
 --Create following table using query according to the definition. 
 
 CREATE TABLE STUDENT_DETAIL (
