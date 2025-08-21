@@ -1,0 +1,136 @@
+SELECT * FROM AUTHOR
+SELECT * FROM PUBLISHER
+SELECT * FROM BOOKSS
+
+--Part – A:
+
+--1. List all books with their authors.
+SELECT AUTHORNAME,TITLE
+FROM AUTHOR JOIN BOOKSS
+ON AUTHOR.AUTHORID = BOOKSS.AUTHORID
+
+--2. List all books with their publishers.
+SELECT TITLE,PUBLISHERNAME
+FROM BOOKSS JOIN PUBLISHER
+ON PUBLISHER.PUBLISHERID = BOOKSS.PUBLISHERID
+
+--3. List all books with their authors and publishers.
+SELECT AUTHORNAME,TITLE,PUBLISHERNAME
+FROM AUTHOR JOIN BOOKSS
+ON AUTHOR.AUTHORID = BOOKSS.AUTHORID
+JOIN PUBLISHER ON BOOKSS.PUBLISHERID = PUBLISHER.PUBLISHERID
+
+--4. List all books published after 2010 with their authors and publisher and price.
+SELECT TITLE , AUTHORNAME,PUBLISHERNAME,PUBLICATIONYEAR,PRICE
+FROM BOOKSS 
+JOIN AUTHOR
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+JOIN PUBLISHER 
+ON BOOKSS.PUBLISHERID = PUBLISHER.PUBLISHERID;
+
+--5. List all authors and the number of books they have written.
+SELECT AUTHORNAME,COUNT(TITLE)
+FROM BOOKSS 
+RIGHT JOIN AUTHOR 
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+GROUP BY AUTHORNAME;
+
+--6. List all publishers and the total price of books they have published.
+SELECT AUTHORNAME,SUM(PRICE)
+FROM BOOKSS 
+RIGHT JOIN AUTHOR 
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+GROUP BY AUTHORNAME;
+
+--7. List authors who have not written any books.
+SELECT AUTHORNAME,COUNT(TITLE)
+FROM BOOKSS 
+RIGHT JOIN AUTHOR 
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+GROUP BY AUTHORNAME
+HAVING COUNT(TITLE) = 0;
+
+--8. Display total number of Books and Average Price of every Author.
+SELECT AUTHORNAME,COUNT(TITLE) AS BOOKS,AVG(PRICE) AS AVGPRICE
+FROM BOOKSS 
+RIGHT JOIN AUTHOR 
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+GROUP BY AUTHORNAME;
+
+--9. lists each publisher along with the total number of books they have published, sorted from highest to lowest.
+SELECT AUTHORNAME,COUNT(TITLE)
+FROM BOOKSS 
+RIGHT JOIN AUTHOR 
+ON BOOKSS.AUTHORID = AUTHOR.AUTHORID
+GROUP BY AUTHORNAME
+ORDER BY COUNT(TITLE) DESC;
+
+--10. Display number of books published each year.
+SELECT PUBLICATIONYEAR,COUNT(TITLE)
+FROM BOOKSS
+GROUP BY PUBLICATIONYEAR
+
+--Part – B:
+
+--1. List the publishers whose total book prices exceed 500, ordered by the total price.
+SELECT AUTHORNAME , SUM(PRICE)
+FROM AUTHOR
+JOIN BOOKSS
+ON AUTHOR.AUTHORID = BOOKSS.AUTHORID
+GROUP BY AUTHORNAME
+HAVING SUM(PRICE)>500
+
+--2. List most expensive book for each author, sort it with the highest price.
+SELECT AUTHORNAME ,MAX(PRICE)
+FROM AUTHOR JOIN BOOKSS
+ON AUTHOR.AUTHORID = BOOKSS.AUTHORID
+GROUP BY AUTHORNAME
+ORDER BY MAX(PRICE) DESC
+
+--Part – C: Create table as per following schema with proper validation and try to insert data which violate your
+--validation.
+--1. Emp_info(Eid, Ename, Did, Cid, Salary, Experience)
+--	 Dept_info(Did, Dname)
+--	 City_info(Cid, Cname, Did))
+--	 District(Did, Dname, Sid)
+--	 State(Sid, Sname, Cid)
+--	 Country(Cid, Cname)
+CREATE TABLE EMP_INFO(
+	EID INT,
+	ENAME VARCHAR(20),
+	DID INT,
+	CID INT,
+	SALARY DECIMAL(8,2),
+	EXPERIENCE INT
+)
+
+CREATE TABLE DEPT_INFO(
+	DID INT,
+	DNAME VARCHAR(20)
+)
+
+CREATE TABLE CITY_INFO(
+	CID INT,
+	DID INT,
+	CNAME VARCHAR(20)
+)
+
+CREATE TABLE DISTRICT(
+	DID INT,
+	DNAME VARCHAR(20),
+	SID INT
+)
+
+CREATE TABLE STATE(
+	SID INT,
+	SNAME VARCHAR(20),
+	CID INT
+)
+
+CREATE TABLE COUNTRY(
+	CID INT,
+	CNAME VARCHAR(20)
+)
+
+--2. Insert 5 records in each table.
+--3. Display employeename, departmentname, Salary, Experience, City, District, State and country of all employees.
