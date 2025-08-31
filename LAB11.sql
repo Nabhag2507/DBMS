@@ -41,7 +41,7 @@ INSERT INTO EMPLOYEE_MASTER VALUES
 	('E05','JAY','E01'),
 	('E06','ANJANA','E04')
 
---Part – A:
+--Part ï¿½ A:
 
 --1. Combine information from student and result table using cross join or Cartesian product.
 SELECT * 
@@ -72,13 +72,13 @@ SELECT STU_INFO.ROLLNO,STU_INFO.NAME,BRANCH,SPI
 FROM STU_INFO JOIN RESULT
 ON STU_INFO.ROLLNO = RESULT.ROLLNO;
 
---7. Display Rno, Name, Branch and SPI of CE branch’s student only.
+--7. Display Rno, Name, Branch and SPI of CE branchï¿½s student only.
 SELECT STU_INFO.ROLLNO,STU_INFO.NAME,BRANCH,SPI 
 FROM STU_INFO JOIN RESULT
 ON STU_INFO.ROLLNO = RESULT.ROLLNO
 WHERE BRANCH = 'CE';
 
---8. Display Rno, Name, Branch and SPI of other than EC branch’s student only.
+--8. Display Rno, Name, Branch and SPI of other than EC branchï¿½s student only.
 SELECT STU_INFO.ROLLNO,STU_INFO.NAME,BRANCH,SPI 
 FROM STU_INFO JOIN RESULT
 ON STU_INFO.ROLLNO = RESULT.ROLLNO
@@ -103,14 +103,14 @@ FROM STU_INFO JOIN RESULT
 ON STU_INFO.ROLLNO = RESULT.ROLLNO
 GROUP BY BRANCH;
 
---12. Display branch wise student’s count in descending order.
+--12. Display branch wise studentï¿½s count in descending order.
 SELECT COUNT(STU_INFO.ROLLNO) AS TOTAL,BRANCH
 FROM STU_INFO JOIN RESULT
 ON STU_INFO.ROLLNO = RESULT.ROLLNO
 GROUP BY BRANCH
 ORDER BY TOTAL DESC;
 
---Part – B:
+--Part ï¿½ B:
 
 --1. Display average result of each branch and sort them in ascending order by SPI.
 SELECT avg(SPI) AS avg_result,BRANCH
@@ -126,9 +126,9 @@ ON STU_INFO.ROLLNO = RESULT.ROLLNO
 GROUP BY BRANCH
 ORDER BY HIGHEST DESC;
 
---Part – C:
+--Part ï¿½ C:
 
---1. Retrieve the names of employee along with their manager’s name from the Employee table.
+--1. Retrieve the names of employee along with their managerï¿½s name from the Employee table.
 SELECT E1.NAME , E2.NAME
 FROM EMPLOYEE_MASTER E1 JOIN EMPLOYEE_MASTER E2
 ON E1.EMPNO = E2.MANAGERNO;

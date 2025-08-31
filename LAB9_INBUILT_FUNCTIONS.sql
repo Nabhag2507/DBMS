@@ -1,6 +1,6 @@
 USE CSE_3A_261;
 
---Part – A:
+--Part ï¿½ A:
 --1. Display the result of 5 multiply by 30.
 SELECT 5*30;
 
@@ -50,7 +50,7 @@ SELECT SIGN(-25), SIGN(0), SIGN(25);
 SELECT RAND();
 
 
---Part – B:
+--Part ï¿½ B:
 --Create and insert the following records in the EMP_MASTER table
 
 CREATE TABLE EMP_MASTER(
@@ -89,7 +89,7 @@ SELECT 55%2, 55%3;
 SELECT POWER(23,2), POWER(14,3);
 
 
---Part – C:
+--Part ï¿½ C:
 
 --1. Retrieve the details of employees whose total earnings (Salary + Commission) are greater than 15000.
 SELECT * 

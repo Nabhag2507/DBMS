@@ -20,31 +20,33 @@ INSERT INTO	STUDENT VALUES
 
 --From the above given tables perform the following queries (LIKE Operation): 
 
---1. Display the name of students whose name starts with ‘k’. 
+--Part ï¿½ A: 
+
+--1. Display the name of students whose name starts with ï¿½kï¿½. 
 SELECT FirstName FROM STUDENT WHERE FirstName LIKE 'K%';
 
 --2. Display the name of students whose name consists of five characters. 
 SELECT FirstName FROM STUDENT WHERE FirstName LIKE '_____';
 
---3. Retrieve the first name & last name of students whose city name ends with ‘a’ & contains six characters. 
+--3. Retrieve the first name & last name of students whose city name ends with ï¿½aï¿½ & contains six characters. 
 SELECT FirstName,LastName FROM STUDENT WHERE City LIKE '_____A%';
 
---4. Display all the students whose last name ends with ‘tel’. 
+--4. Display all the students whose last name ends with ï¿½telï¿½. 
 SELECT LastName FROM STUDENT WHERE LastName LIKE '%TEL';
 
---5. Display all the students whose first name starts with ‘ha’ & ends with‘t’. 
+--5. Display all the students whose first name starts with ï¿½haï¿½ & ends withï¿½tï¿½. 
 SELECT * FROM STUDENT WHERE FirstName LIKE 'HA%T';
 
---6. Display all the students whose first name starts with ‘k’ and third character is ‘y’. 
+--6. Display all the students whose first name starts with ï¿½kï¿½ and third character is ï¿½yï¿½. 
 SELECT FirstName FROM STUDENT WHERE FirstName LIKE 'K_Y%';
 
 --7. Display the name of students having no website and name consists of five characters
 SELECT FirstName FROM STUDENT WHERE FirstName LIKE '_____' AND Website IS NULL;
 
---8. Display all the students whose last name consist of ‘jer’.   
+--8. Display all the students whose last name consist of ï¿½jerï¿½.   
 SELECT LastName FROM STUDENT WHERE LastName LIKE '%JER%';
 
---9. Display all the students whose city name starts with either ‘r’ or ‘b’. 
+--9. Display all the students whose city name starts with either ï¿½rï¿½ or ï¿½bï¿½. 
 SELECT * FROM STUDENT WHERE City LIKE '[R,B]%';
 
 --10. Display all the name students having websites. 
@@ -53,16 +55,16 @@ SELECT FirstName FROM STUDENT WHERE Website IS NOT NULL;
 --11. Display all the students whose name starts from alphabet A to H. 
 SELECT * FROM STUDENT WHERE FirstName LIKE '[A-H]%';
 
---12. Display all the students whose name’s second character is vowel. 
+--12. Display all the students whose nameï¿½s second character is vowel. 
 SELECT * FROM STUDENT WHERE FirstName LIKE '_[A,E,I,O,U]%';
 
 --13. Display the name of students having no website and name consists of minimum five characters. 
 SELECT FirstName FROM STUDENT WHERE FirstName LIKE '_____%' AND Website IS NULL;
 
---14. Display all the students whose last name starts with ‘Pat’.   
+--14. Display all the students whose last name starts with ï¿½Patï¿½.   
 SELECT * FROM STUDENT WHERE LastName LIKE 'PAT%';
 
---15. Display all the students whose city name does not starts with ‘b’. 
+--15. Display all the students whose city name does not starts with ï¿½bï¿½. 
 SELECT * FROM STUDENT WHERE CITY LIKE '[^B]%';
 
 --16. Display all the students whose student ID ends with digit. 
@@ -83,10 +85,12 @@ SELECT * FROM STUDENT WHERE LASTNAME LIKE '%SHAH%' AND CITY LIKE '%D' AND (WEBSI
 --have a website containing '.com'. 
 SELECT * FROM STUDENT WHERE FIRSTNAME LIKE '[A,E,I,O,U][A,E,I,O,U]%' AND CITY LIKE 'R%' AND (WEBSITE LIKE '%COM%');
 
---1. Display all the students whose name’s second character is vowel and of and start with H. 
+--Part ï¿½ B: 
+
+--1. Display all the students whose nameï¿½s second character is vowel and of and start with H. 
 SELECT * FROM STUDENT WHERE FIRSTNAME LIKE 'H[A,E,I,O,U]%';
 
---2. Display all the students whose last name does not ends with ‘a’. 
+--2. Display all the students whose last name does not ends with ï¿½aï¿½. 
 SELECT * FROM STUDENT WHERE LASTNAME  LIKE '%[^A]';
 
 --3. Display all the students whose first name starts with consonant. 
@@ -100,7 +104,7 @@ SELECT * FROM STUDENT WHERE FIRSTNAME LIKE 'K%' AND LASTNAME LIKE '%TEL' AND (WE
 --must have a website that ends with '.com' and their first name should not start with 'A'. 
 SELECT * FROM STUDENT WHERE ADDRESS LIKE '%-%' AND City LIKE '[R,B]%' AND (WEBSITE LIKE '%COM%' OR FIRSTNAME LIKE 'A%');
 
---Part – C: 
+--Part ï¿½ C: 
 
 --1. Display all the students whose address contains single quote or double quote. 
 SELECT * FROM STUDENT WHERE ADDRESS LIKE '%[''"]%';
