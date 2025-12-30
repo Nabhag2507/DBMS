@@ -1,0 +1,63 @@
+Create and Select Database Named: “BANK_INFO” and create below Deposit collection with 8 Documents.
+db.createCollection("Deposit")
+
+db.Deposit.insertMany([
+  { FID: 2, FNAME: 'SUNIL', BNAME: 'CE', SALARY: 50000, JDATE: '4-1-96' },
+  { FID: 3, FNAME: 'MEHUL', BNAME: 'IT', SALARY: 35000, JDATE: '17-11-95' },
+  { FID: 4, FNAME: 'MADHURI', BNAME: 'IT', SALARY: 12000, JDATE: '17-12-95' },
+  { FID: 5, FNAME: 'PRMOD', BNAME: 'CE', SALARY: 30000, JDATE: '27-3-96' },
+  { FID: 6, FNAME: 'SANDIP', BNAME: 'CE', SALARY: 20000, JDATE: '31-3-96' },
+  { FID: 7, FNAME: 'SHIVANI', BNAME: 'CE', SALARY: 10000, JDATE: '5-9-95' },
+  { FID: 8, FNAME: 'KRANTI', BNAME: 'IT', SALARY: 50000, JDATE: '2-7-95' }
+]
+)
+
+Part - A
+
+1.Retrieve/Display every document of Deposit collection.
+db.Deposit.find()
+
+2.Display only one document of Deposit collection. (Use: findOne())
+db.Deposit.findOne()
+
+3.Insert following document into Deposit collection. (Use: insertOne())
+db.Deposit.insertOne({ACTNO:109, CNAME:"Kirti", BNAME:"Virar", AMOUNT:3000, ADATE:"3-5-1997"})
+
+4.Insert following documents into Deposit collection. (Use: insertMany())
+db.Deposit.insertMany([
+  {ACTNO:110, CNAME:"Mitali", BNAME:"Andheri", AMOUNT:4500, ADATE:"4-9-1995"},
+  {ACTNO:111, CNAME:"Rajiv", BNAME:"Nehru Place", AMOUNT:7000, ADATE:"2-10-1998"}
+])
+
+5.Display all the documents of ‘VIRAR’ branch from Deposit collection.
+db.Deposit.find({BNAME:"Virar"})
+
+6.Display all the documents of Deposit collection whose amount is between 3000 and 5000.
+db.Deposit.find({AMOUNT:{$gte : 3000, $lte : 5000}})
+
+7.Display all the documents of Deposit collection whose amount is greater than 2000 and branch is VIRAR.
+db.Deposit.find({AMOUNT:{$gte : 2000},BNAME:"Virar"})
+
+8.Display all the documents with CNAME, BNAME and AMOUNT fields from Deposit collection.
+db.Deposit.find({}, {CNAME:1,BNAME:1,AMOUNT:1})
+
+9.Display all the documents of Deposit collection in ascending order by CNAME.
+db.Deposit.find().sort({CNAME:1})
+
+10.Display all the documents of Deposit collection in descending order by BNAME.
+db.Deposit.find().sort({BNAME:-1})
+
+11.Display all the documents of Deposit collection in ascending order by ACTNO and descending order by AMOUNT.
+db.Deposit.find().sort({ACTNO:1,AMOUNT:1})
+
+12.Display only first two documents of Deposit collection.
+db.Deposit.find().limit(2)
+
+13.Display 3rd document of Deposit collection.
+db.Deposit.find().skip(2).limit(1)
+
+14.Display 6th and 7th documents of Deposit collection.
+db.Deposit.find().skip(5).limit(2)
+
+15.Display the count of documents in Deposit collection.
+db.Deposit.countDocuments()
