@@ -1,6 +1,6 @@
 USE CSE_4B_465
 
---Part – A 
+--Part ï¿½ A 
 
 --1. Create a cursor Course_Cursor to fetch all rows from COURSE table and display them. 
 GO
@@ -140,7 +140,7 @@ DEALLOCATE STUDENT_WITH_COURSENAME
 
 GO
 
---7. Create a cursor to insert data into new table if student belong to ‘CSE’ department.
+--7. Create a cursor to insert data into new table if student belong to ï¿½CSEï¿½ department.
 --   (create new table CSEStudent with relevant columns)
 
 CREATE TABLE CSEStudent(
@@ -164,4 +164,76 @@ BEGIN
 END
 CLOSE StudentDept_Cursor_Fetch
 DEALLOCATE StudentDept_Cursor_Fetch
+GO
+
+--Part â€“ B
+
+--8. Create a cursor to update all NULL grades to 'F' for enrollments with Status 'Completed'
+
+GO
+DECLARE @GRADE VARCHAR(10),@ENSTATUS VARCHAR(50)
+DECLARE UpGrade_Fetch CURSOR
+FOR SELECT Grade , EnrollmentStatus
+FROM ENROLLMENT
+WHERE Grade IS NULL AND EnrollmentStatus = 'Completed'
+
+
+OPEN UpGrade_Fetch
+FETCH NEXT FROM UpGrade_Fetch INTO @GRADE ,@ENSTATUS 
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	UPDATE ENROLLMENT
+	SET Grade = 'F' 
+	FETCH NEXT FROM UpGrade_Fetch INTO @GRADE ,@ENSTATUS 
+END
+CLOSE UpGrade_Fetch
+DEALLOCATE UpGrade_Fetch
+GO
+
+--9. Cursor to show Faculty with Course they teach (EX: Dr. Sheth teaches Data structure)
+
+GO
+DECLARE @FNAME VARCHAR(50),@CNAME VARCHAR(50)
+DECLARE FacultyCourse_Fetch CURSOR
+FOR SELECT FacultyName, courseName
+FROM COURSE JOIN COURSE_ASSIGNMENT
+ON COURSE.CourseID = COURSE_ASSIGNMENT.CourseID
+JOIN FACULTY
+ON FACULTY.FacultyID = COURSE_ASSIGNMENT.FacultyID
+
+OPEN FacultyCourse_Fetch
+FETCH NEXT FROM FacultyCourse_Fetch INTO @FNAME ,@CNAME
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	PRINT CONCAT(@FNAME + ' TEACHES IN ',@CNAME)
+	FETCH NEXT FROM FacultyCourse_Fetch INTO @FNAME ,@CNAME
+END
+CLOSE FacultyCourse_Fetch
+DEALLOCATE FacultyCourse_Fetch
+GO
+
+GO
+DECLARE @SNAME VARCHAR(20),@TCREDITS INT
+DECLARE StudentCredits_Cursor CURSOR
+FOR
+SELECT StuName,SUM(CourseCredits)
+FROM STUDENT
+JOIN ENROLLMENT
+ON STUDENT.StudentID=ENROLLMENT.StudentID
+JOIN COURSE
+ON COURSE.CourseID=ENROLLMENT.CourseID
+GROUP BY StuName
+OPEN StudentCredits_Cursor
+
+FETCH NEXT FROM StudentCredits_Cursor INTO @SNAME,@TCREDITS
+
+WHILE @@FETCH_STATUS=0
+BEGIN
+PRINT @SNAME+' '+'HAS TOTAL CREDITS'+' '+CAST(@TCREDITS AS VARCHAR)
+FETCH NEXT FROM StudentCredits_Cursor INTO @SNAME,@TCREDITS
+END
+CLOSE StudentCredits_Cursor
+DEALLOCATE StudentCredits_Cursor
 GO
