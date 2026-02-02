@@ -1,0 +1,87 @@
+Part - A
+1.Create a new database named “Darshan”.
+switched to db Darshan
+
+2.Create another new database named “DIET”.
+switched to db DIET
+
+3.List all databases.
+show dbs
+
+4.Check the current database.
+
+
+5.Drop “DIET” database.
+db.dropDatabase()
+
+6.Create a collection named “Student” in the “Darshan” database.
+db.createCollection("Student")
+
+7.Create a collection named “Department” in the “Darshan” database.
+db.createCollection("Department")
+
+8.List all collections in the “Darshan” database.
+show collections
+
+9.Insert a single document using insertOne into “Department” collection. (Dname:’CE’, HOD:’Patel’)
+db.Department.insertOne({Dname:"CE", HOD:"Patel"})
+
+10.Insert two document using insertMany into “Department” collection. (Dname:’IT’ and Dname:’ICT’)
+db.Department.insertMany([{Dname:"IT"}, {Dname:"ICT"}])
+
+11.Drop a collection named “Department” from the “Darshan” database.
+db.Department.drop()
+
+12.Insert a single document using insertOne into “Student” collection.(Fields are Name, City, Branch, Semester, Age) Insert your own data.
+db.Student.insertOne({Name:"Nabhag", City:"Amreli", Branch:"CSE", Semester:4, Age:18})
+
+13.Insert three documents using insertMany into “Student” collection.(Fields are Name, City, Branch, Semester, Age) Insert your three friend’s data.
+db.Student.insertMany([
+  {Name:"Dhruvil", City:"Ahmadabad", Branch:"B.com", Semester:3, Age:19},
+  {Name:"Prince", City:"Baroda", Branch:"BBA", Semester:4, Age:21},
+  {Name:"Ronak", City:"Rajkot", Branch:"BA", Semester:6, Age:16}
+])
+
+14.Check whether “Student” collection exists or not.
+db.Student.exists()
+
+15.Check the stats of “Student” collection.
+db.Student.stats()
+
+16.Drop the “Student” collection.
+db.Student.drop()
+
+17.Create a collection named “Deposit”.
+db.createCollection("Deposit")
+
+18.Insert following data in to “Deposit” collection.
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('694e1bc27b86873efbe2a488')
+  }
+}
+db.Deposit.insertMany([
+  {ACTNO:102, CNAME:"Sunil", BNAME:"AJNI", AMOUNT:5000.00, CITY:"Surat"},
+  {ACTNO:103, CNAME:"Mehul", BNAME:"KAROLBAGH", AMOUNT:3500.00, CITY:"Baroda"},
+  {ACTNO:104, CNAME:"Madhuri", BNAME:"CHANDI", AMOUNT:1200.00, CITY:"Ahmedabad"},
+  {ACTNO:105, CNAME:"Pramod", BNAME:"M.G. ROADM.G. ROAD", AMOUNT:3000.00, CITY:"surat"},
+  {ACTNO:106, CNAME:"Sandip", BNAME:"ANDHERI", AMOUNT:2000.00, CITY:"Rajkot"},
+  {ACTNO:107, CNAME:"Shivani", BNAME:"VIRAR", AMOUNT:1000.00, CITY:"Surat"},
+  {ACTNO:108, CNAME:"Kranti", BNAME:"NEHRU PLACE", AMOUNT:5000.00, CITY:"Rajkot"}
+])
+
+19.Display all the documents of “Deposit” collection.
+db.Deposit.find()
+
+20.Drop the “Deposit” collection.
+db.Deposit.drop()
+
+Part – B
+
+1.Create a new database named “Computer”.
+use
+
+2.Create a collection named “Faculty” in the “Computer” database.
+3.Insert a below document using insertOne into “Faculty” collection.
