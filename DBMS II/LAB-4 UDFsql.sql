@@ -1,6 +1,6 @@
 USE CSE_4B_465
 
---Part – A
+--Part ï¿½ A
 
 --1.Write a scalar function to print "Welcome to DBMS Lab".
 GO
@@ -144,14 +144,129 @@ GO
 
 SELECT * FROM DBO.FUNC_UNIQUE_DEPARTMENT()
 
---Part – B
+--Part ï¿½ B
 
 --11.Write a scalar function that calculates age in years given a DateOfBirth.
---12.Write a scalar function to check whether given number is palindrome or not.
---13.Write a scalar function to calculate the sum of Credits for all courses in the 'CSE' department.
---14.Write a table-valued function that returns all courses taught by faculty with a specific designation.
+GO
+CREATE OR ALTER FUNCTION FUNC_CALC_AGE(@DOB DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @AGE INT
 
---Part – C
+    SET @AGE = DATEDIFF(YEAR, @DOB, GETDATE())
+
+    -- Adjust if birthday not yet occurred this year
+    IF (MONTH(@DOB) > MONTH(GETDATE())) 
+        OR (MONTH(@DOB) = MONTH(GETDATE()) AND DAY(@DOB) > DAY(GETDATE()))
+    BEGIN
+        SET @AGE = @AGE - 1
+    END
+
+    RETURN @AGE
+END
+GO
+
+SELECT DBO.FUNC_CALC_AGE('2005-06-10')
+
+--12.Write a scalar function to check whether given number is palindrome or not.
+GO
+CREATE OR ALTER FUNCTION FUNC_PALINDROME(@NUM INT)
+RETURNS VARCHAR(20)
+AS
+BEGIN
+    DECLARE @REV INT = 0,
+            @TEMP INT,
+            @REM INT
+
+    SET @TEMP = @NUM
+
+    WHILE @TEMP > 0
+    BEGIN
+        SET @REM = @TEMP % 10
+        SET @REV = (@REV * 10) + @REM
+        SET @TEMP = @TEMP / 10
+    END
+
+    IF @REV = @NUM
+        RETURN 'PALINDROME'
+    
+    RETURN 'NOT PALINDROME'
+END
+GO
+
+SELECT DBO.FUNC_PALINDROME(121)
+
+--13.Write a scalar function to calculate the sum of Credits for all courses in the 'CSE' department.
+GO
+CREATE OR ALTER FUNCTION FUNC_CSE_TOTAL_CREDITS()
+RETURNS INT
+AS
+BEGIN
+    DECLARE @TOTAL INT
+
+    SELECT @TOTAL = SUM(COURSECREDITS)
+    FROM COURSE
+    WHERE DEPARTMENT = 'CSE'
+
+    RETURN ISNULL(@TOTAL,0)
+END
+GO
+
+SELECT DBO.FUNC_CSE_TOTAL_CREDITS()
+
+--14.Write a table-valued function that returns all courses taught by faculty with a specific designation.
+GO
+CREATE OR ALTER FUNCTION FUNC_COURSE_BY_DESIGNATION(@DESG VARCHAR(50))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT C.*
+    FROM COURSE C
+    JOIN FACULTY F ON C.FACULTYID = F.FACULTYID
+    WHERE F.DESIGNATION = @DESG
+)
+GO
+
+SELECT * FROM DBO.FUNC_COURSE_BY_DESIGNATION('Professor')
+
+--Part ï¿½ C
 
 --15.Write a scalar function that accepts StudentID and returns their total enrolled credits (sum of credits from all active enrollments).
+GO
+CREATE OR ALTER FUNCTION FUNC_TOTAL_ENROLLED_CREDITS(@SID VARCHAR(10))
+RETURNS INT
+AS
+BEGIN
+    DECLARE @TOTAL INT
+
+    SELECT @TOTAL = SUM(C.COURSECREDITS)
+    FROM ENROLLMENT E
+    JOIN COURSE C ON E.COURSEID = C.COURSEID
+    WHERE E.STUDENTID = @SID
+        AND E.STATUS = 'Active'
+
+    RETURN ISNULL(@TOTAL,0)
+END
+GO
+
+SELECT DBO.FUNC_TOTAL_ENROLLED_CREDITS('S101')
+
 --16.Write a scalar function that accepts two dates (joining date range) and returns the count of faculty who joined in that period.
+GO
+CREATE OR ALTER FUNCTION FUNC_FACULTY_JOIN_COUNT(@STARTDATE DATE, @ENDDATE DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @COUNT INT
+
+    SELECT @COUNT = COUNT(*)
+    FROM FACULTY
+    WHERE JOINDATE BETWEEN @STARTDATE AND @ENDDATE
+
+    RETURN @COUNT
+END
+GO
+
+SELECT DBO.FUNC_FACULTY_JOIN_COUNT('2020-01-01','2023-12-31')
