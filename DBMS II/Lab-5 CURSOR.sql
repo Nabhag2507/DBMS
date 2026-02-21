@@ -153,7 +153,6 @@ DECLARE StudentDept_Cursor_Fetch CURSOR
 FOR SELECT StuName,StuDepartment
 FROM STUDENTS
 
-
 OPEN StudentDept_Cursor_Fetch
 FETCH NEXT FROM StudentDept_Cursor_Fetch INTO @SNAME,@SDEPT
 

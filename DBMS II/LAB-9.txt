@@ -1,15 +1,15 @@
 Part - A
 1.Create a new database named “Darshan”.
-switched to db Darshan
+use Darshan
 
 2.Create another new database named “DIET”.
-switched to db DIET
+use DIET
 
 3.List all databases.
 show dbs
 
 4.Check the current database.
-
+database
 
 5.Drop “DIET” database.
 db.dropDatabase()
@@ -55,13 +55,6 @@ db.Student.drop()
 db.createCollection("Deposit")
 
 18.Insert following data in to “Deposit” collection.
-
-{
-  acknowledged: true,
-  insertedIds: {
-    '0': ObjectId('694e1bc27b86873efbe2a488')
-  }
-}
 db.Deposit.insertMany([
   {ACTNO:102, CNAME:"Sunil", BNAME:"AJNI", AMOUNT:5000.00, CITY:"Surat"},
   {ACTNO:103, CNAME:"Mehul", BNAME:"KAROLBAGH", AMOUNT:3500.00, CITY:"Baroda"},
@@ -77,11 +70,3 @@ db.Deposit.find()
 
 20.Drop the “Deposit” collection.
 db.Deposit.drop()
-
-Part – B
-
-1.Create a new database named “Computer”.
-use
-
-2.Create a collection named “Faculty” in the “Computer” database.
-3.Insert a below document using insertOne into “Faculty” collection.

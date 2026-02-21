@@ -1,6 +1,6 @@
 USE CSE_4B_465
 
---Part – A 
+--Part ï¿½ A 
 
 --1. Create trigger for printing appropriate message after student registration.
 GO
@@ -53,7 +53,7 @@ GO
 	AFTER INSERT
 	AS 
 	BEGIN
-		INSERT INTO LOG VALUES('STUDENT REGISTERD', GETDATE())
+		INSERT INTO LOG VALUES('STUDENT REGISTERED', GETDATE())
 	END
 GO
 
@@ -94,7 +94,7 @@ GO
 
 DROP TRIGGER EXPERIENCE
 
---Part – B 
+--Part ï¿½ B 
 
 --7. Create trigger for auto-stamping enrollment dates. 
 GO

@@ -27,7 +27,23 @@ GO
 SELECT DBO.FUNC_SIMPLE_INTEREST(1000,2,1)
 
 --3.Function to Get Difference in Days Between Two Given Dates
+GO
+CREATE OR ALTER FUNCTION FUNC_DATE_DIFF_DAYS
+(
+    @DATE1 DATE,
+    @DATE2 DATE
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @DIFF INT
+    SET @DIFF = DATEDIFF(DAY, @DATE1, @DATE2)
 
+    RETURN @DIFF
+END
+GO
+
+SELECT DBO.FUNC_DATE_DIFF_DAYS('2026-02-01', '2026-02-17')
 
 --4.Write a scalar function which returns the sum of Credits for two given CourseIDs.
 GO

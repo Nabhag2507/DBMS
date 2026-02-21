@@ -3,7 +3,7 @@ Lab-11 update, delete and rename method
 Part – A (Use collection “Student” created in Lab-9)
 
 1. Update the age of John's to 31.
-   db.Student.updateOne({ name: "John" }, {$set: { age: 31 }
+   db.Student.updateOne({ name: "John" }, {$set: { age: 31 }})
 
 2. Update the city of all students from 'New York' to 'New Jersey'.
    db.student.updateMany({}, {$set: { city: 'New Jersey' }})
@@ -81,11 +81,23 @@ Part – A (Use collection “Student” created in Lab-9)
     db.student.updateMany({}, { $rename: { city: "location" }})
 
 27. Rename the name field to FullName for 'John'.
+    db.student.updateOne({name: "John}, { $rename: { name: "FullName" }})
+
 28. Rename the isActive field to status for all documents.
+    db.student.updateMany({}, { $rename: {isActive: "status"}})
+
 29. Rename age to yearsOld for everyone from 'San Francisco' student only.
+    db.student.updateMany({city: "San Francisco"}, {$rename: {age: "yearsOld"}})
+
 30. Create a Capped Collection named “Employee” which allows maximum 3 documents: Insert following documents into above “Employee” collection and check how many documents are there in above “Employee” collection.
 {"Ecode": 1, "Ename": "John"}
 {"Ecode ": 2, "Ename": "Jane", "age": 25, "city": "Los Angeles"}
 {"Ecode ": 3, "Ename": "Tom", "age": 35}
 {"Ecode ": 4, "Ename": "Lucy", "age": 28, "city": "San Francisco", "isActive": true}
 {"Ename": "Dino"}
+
+db.createCollection("Employee", {
+   capped: true,
+   size: 1024,
+   max: 3
+})
