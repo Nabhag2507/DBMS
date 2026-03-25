@@ -34,6 +34,7 @@ db.Deposit.find({BNAME:"Virar"})
 
 6.Display all the documents of Deposit collection whose amount is between 3000 and 5000.
 db.Deposit.find({AMOUNT:{$gte : 3000, $lte : 5000}})
+db.Deposit.find({$and: [{AMOUNT: {$gte: 3000}}, {AMOUNT: {$lte: 5000}}]})
 
 7.Display all the documents of Deposit collection whose amount is greater than 2000 and branch is VIRAR.
 db.Deposit.find({AMOUNT:{$gte : 2000},BNAME:"Virar"})

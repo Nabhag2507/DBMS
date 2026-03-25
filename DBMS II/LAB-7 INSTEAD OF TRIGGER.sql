@@ -1,6 +1,6 @@
 USE CSE_4B_465
 
---Part – A 
+--Part ï¿½ A 
 
 --1. Create trigger for blocking student deletion.
 GO
@@ -58,8 +58,8 @@ DROP TRIGGER TR_LOG_OF_MODIFICATION
 
 SELECT * FROM LOG
 
---5. Create trigger to Block student to update their enrollment year and print message ‘students are not 
---	 allowed to update their enrollment year’ 
+--5. Create trigger to Block student to update their enrollment year and print message ï¿½students are not 
+--	 allowed to update their enrollment yearï¿½ 
 GO
 	CREATE OR ALTER TRIGGER TR_BLOCK_ENROLLMENT
 	ON STUDENTS
@@ -97,9 +97,9 @@ GO
 
 DROP TRIGGER TR_AGE_RESTRICTION
 
---Part – B 
+--Part ï¿½ B 
 
---7. Create trigger for unique faculty’s email check. 
+--7. Create trigger for unique facultyï¿½s email check. 
 GO
 	CREATE OR ALTER TRIGGER TR_UNIQUE_EMAIL
 	ON FACULTY 
@@ -223,8 +223,7 @@ GO
 			('SOMEONE TRIED TO UPDATE INTO COURSE TABLE', GETDATE())
 
 
-		INSERT INTO LOG VALUES
-		('YOU CAN NOT MODIFY TABLE', GETDATE())
+		PRINT ('YOU CAN NOT MODIFY TABLE', GETDATE())
 	END
 GO
 

@@ -1,14 +1,18 @@
 1. Find employees whose name start with E. 
 db.employee.find({ENAME: {$regex: "^E"}})
+db.employee.find({ENAME: /^E/})
 
 2. Find employees whose name ends with n. 
 db.employee.find({ENAME: {$regex: "n$"}})
+db.employee.find({ENAME: /n$/})
 
 3. Find employees whose name starts with S or M in your collection.
 db.employee.find({ENAME: {$regex: "^[SM]"}})
+db.employee.find({ENAME: /^[SM]/})
  
 4. Find employees where city starts with A to M in your collection. 
 db.employee.find({CITY: {$regex: "^[A-M]"}})
+db.employee.find({CITY: /^[A-M]/})
 
 5. Find employees where city name ends in ‘ney’. 
 db.employee.find({CITY: {$regex: "ney$"}})
@@ -19,6 +23,7 @@ db.employee.find({ENAME: {$regex: "n", $options : "i"}} )
 db.employee.find({ENAME: /n/i})
 
 7. Display employee info whose name starts with E and having 5 characters. 
+db.employee.find({ENAME: {regex: "^E.{4}"}})
 db.employee.find({ENAME: /^E.{4}/})
 
 8. Display employee whose name start with S and ends in a. 
@@ -38,7 +43,7 @@ db.employee.find(
 
 11. Display ENAME, JOININGDATE and CITY who does not belongs to city London or Sydney.  
 db.employee.find(
-  { CITY: /[^"London", "Sydney"]/ }, 
+  { CITY: {$nin: ["London", "Sydney"]} }, 
   { _id: 0, JOININGDATE: 1, ENAME: 1, CITY: 1 }
 )
 

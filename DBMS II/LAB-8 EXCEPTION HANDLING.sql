@@ -1,6 +1,6 @@
 USE CSE_4B_465
 
---Part – A 
+--Part ï¿½ A 
 
 --1. Handle Divide by Zero Error and Print message like: Error occurs that is - Divide by zero error. 
 GO
@@ -23,7 +23,7 @@ END
 
 EXEC HANDLE_ZERO_ERROR 10, 0
 
---2. Try to convert string to integer and handle the error using try…catch block. 
+--2. Try to convert string to integer and handle the error using tryï¿½catch block. 
 BEGIN TRY
 	PRINT CAST ('ASDF' AS INT)
 END TRY
@@ -89,7 +89,7 @@ BEGIN CATCH
 END CATCH 
 
 
---Part – B 
+--Part ï¿½ B 
 
 --7. Handle Invalid Date Format 
 --	 message.
@@ -100,7 +100,7 @@ BEGIN CATCH
 	PRINT 'INVALID DATE FORMAT'
 END CATCH 
 
---8. Procedure to Update faculty’s Email with Error Handling
+--8. Procedure to Update facultyï¿½s Email with Error Handling
 GO 
 CREATE OR ALTER PROCEDURE UPDATE_FAC_EMAIL
 	@ID		INT,
@@ -141,9 +141,9 @@ BEGIN
     END CATCH
 END
 
---Part – C 
+--Part ï¿½ C 
 
---10. Write a script that checks if a faculty’s salary is NULL. If it is, use RAISERROR to show a message with a 
+--10. Write a script that checks if a facultyï¿½s salary is NULL. If it is, use RAISERROR to show a message with a 
 --	  severity of 16. (Note: Do not use any table)
 DECLARE @SALARY INT
 
@@ -151,7 +151,7 @@ SET @SALARY = NULL
 
 IF (@SALARY IS NULL)
 BEGIN
-    RAISERROR ('FACULTY SALARY IS NULL', 16, 1)
+    RAISERRORx ('FACULTY SALARY IS NULL', 16, 1)
 END
 ELSE
 BEGIN

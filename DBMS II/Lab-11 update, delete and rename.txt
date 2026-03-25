@@ -6,7 +6,7 @@ Part – A (Use collection “Student” created in Lab-9)
    db.Student.updateOne({ name: "John" }, {$set: { age: 31 }})
 
 2. Update the city of all students from 'New York' to 'New Jersey'.
-   db.student.updateMany({}, {$set: { city: 'New Jersey' }})
+   db.student.updateMany({city: "New York"}, {$set: { city: 'New Jersey' }})
 
 3. Set isActive to false for every student older than 35.
    db.student.updateMany({age:{$gt: 35}}, {$set: {isActive: "false"}})

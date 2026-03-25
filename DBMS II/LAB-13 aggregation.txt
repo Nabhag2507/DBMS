@@ -79,7 +79,8 @@ db.Student.aggregate([
 
 15. Group students by City and calculate the average Fees for each city, only including cities with avg fees more than 12000. 
 db.Student.aggregate([
-    {$group: {_id: "$FEE"}}
+    {$group: {_id: "$FEE", avgFee: {$avg: "$FEES}}}
+    {$match: {avgFee : {$gt : 12000}}}
 ])
 
 16. Filter students from CE or Mechanical department, then calculate the total Fees.
