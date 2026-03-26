@@ -1,0 +1,151 @@
+// =======================
+// PART A - STOCKS
+// =======================
+
+// 1. Create index on company
+db.stocks.createIndex({ company: 1 })
+
+// 2. Create compound index on sector and sales
+db.stocks.createIndex({ sector: 1, sales: 1 })
+
+// 3. List all indexes
+db.stocks.getIndexes()
+
+// 4. Drop index on company
+db.stocks.dropIndex({ company: 1 })
+
+// 5. Cursor iteration
+var cursor = db.stocks.find()
+cursor.forEach(function(doc) {
+    printjson(doc)
+})
+
+// 6. Limit to first 3 documents
+db.stocks.find().limit(3)
+
+// 7. Sort by sales (descending)
+db.stocks.find().sort({ sales: -1 })
+
+// 8. Skip first 2 documents
+db.stocks.find().skip(2)
+
+// 9. Convert cursor to array
+db.stocks.find().toArray()
+
+// 10. Create Companies collection with validation
+db.createCollection("Companies", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["company", "sector"],
+         properties: {
+            company: { bsonType: "string" },
+            sector: { bsonType: "string" }
+         }
+      }
+   }
+})
+
+
+// =======================
+// PART B
+// =======================
+
+// 1. Scripts collection with required numeric fields
+db.createCollection("Scripts", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["eps", "pe", "roe"],
+         properties: {
+            eps: { bsonType: "number" },
+            pe: { bsonType: "number" },
+            roe: { bsonType: "number" }
+         }
+      }
+   }
+})
+
+// 2. Products collection (embedded + array)
+db.createCollection("Products", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["manufacturer", "categories"],
+         properties: {
+            manufacturer: {
+               bsonType: "object",
+               required: ["name", "country", "establishedYear"],
+               properties: {
+                  name: { bsonType: "string" },
+                  country: { bsonType: "string" },
+                  establishedYear: { bsonType: "int" }
+               }
+            },
+            categories: {
+               bsonType: "array",
+               items: { bsonType: "string" }
+            }
+         }
+      }
+   }
+})
+
+
+// =======================
+// PART C
+// =======================
+
+// 1. financial_Reports collection
+db.createCollection("financial_Reports", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["revenue"],
+         properties: {
+            revenue: {
+               bsonType: "number",
+               minimum: 0
+            },
+            expenses: { bsonType: "number" },
+            netIncome: { bsonType: "number" }
+         }
+      }
+   }
+})
+
+// 2. Student collection (embedded + arrays)
+db.createCollection("Student", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["name", "address", "mobilenumber", "emailaddress"],
+         properties: {
+            name: {
+               bsonType: "object",
+               required: ["first", "last"],
+               properties: {
+                  first: { bsonType: "string" },
+                  last: { bsonType: "string" }
+               }
+            },
+            address: {
+               bsonType: "object",
+               required: ["city", "state"],
+               properties: {
+                  city: { bsonType: "string" },
+                  state: { bsonType: "string" }
+               }
+            },
+            mobilenumber: {
+               bsonType: "array",
+               items: { bsonType: "string" }
+            },
+            emailaddress: {
+               bsonType: "array",
+               items: { bsonType: "string" }
+            }
+         }
+      }
+   }
+})
